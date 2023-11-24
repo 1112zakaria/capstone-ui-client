@@ -1,9 +1,9 @@
-import HomePage from "./HomePage";
-import RegisterPage from "./RegisterPage";
-import LoginPage from "./LoginPage";
-import ConfigurePage from "./ConfigurePage";
-import MonitorPage from "./MonitorPage";
-import StatisticsPage from "./StatisticsPage";
+import HomePage from "./home/HomePage";
+import RegisterPage from "./register/RegisterPage";
+import LoginPage from "./login/LoginPage";
+import ConfigurePage from "./configure/ConfigurePage";
+import MonitorPage from "./monitor/MonitorPage";
+import StatisticsPage from "./statistics/StatisticsPage";
 
 
 type RouteDefinition = {

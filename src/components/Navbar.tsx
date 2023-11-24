@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {AppBar, Box, Button, IconButton, Toolbar} from "@mui/material";
-import {CatchingPokemon, SatelliteAlt} from "@mui/icons-material";
+import {SatelliteAlt} from "@mui/icons-material";
 import routes from "./routes";
 
 const Navbar = () => {
