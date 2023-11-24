@@ -1,9 +1,7 @@
 import {Link} from "react-router-dom";
-import {AppBar, Box, IconButton, Toolbar} from "@mui/material";
+import {AppBar, Box, Button, IconButton, Toolbar} from "@mui/material";
 import {CatchingPokemon} from "@mui/icons-material";
 import routes from "./routes";
-
-const pages = ['home', 'register', 'login'];
 
 const Navbar = () => {
 
@@ -15,9 +13,15 @@ const Navbar = () => {
                         <CatchingPokemon />
                     </IconButton>
                     <Box sx={ {flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {routes.map((route) => (
-                            <Link to={route.url}>{route.name}</Link>
-                        ))}
+
+                            {routes.map((route) => (
+                                <Button
+                                    sx={ {my: 2, color: 'white', display: 'block'} }
+                                >
+                                    <Link to={route.url}>{route.name}</Link>
+                                </Button>
+                            ))}
+
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -25,7 +29,5 @@ const Navbar = () => {
         </nav>
     );
 }
-
-// TODO: implement some sort of "active" navbar element?
 
 export default Navbar;
