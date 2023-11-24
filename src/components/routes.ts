@@ -1,5 +1,6 @@
-import {type} from "os";
 import HomePage from "./HomePage";
+import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 
 
 type RouteDefinition = {
@@ -10,10 +11,20 @@ type RouteDefinition = {
 
 const routes: RouteDefinition[] = [
     {
-        name: "login",
-        url: "/login",
+        name: "home",
+        url: "/",
         element: HomePage
     },
+    {
+        name: "login",
+        url: "/login",
+        element: LoginPage
+    },
+    {
+        name: "register",
+        url: "/register",
+        element: RegisterPage
+    }
 ];
 
 export default routes;
