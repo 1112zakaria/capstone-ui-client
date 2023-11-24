@@ -1,9 +1,15 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AppBar, Box, Button, IconButton, Toolbar} from "@mui/material";
 import {CatchingPokemon} from "@mui/icons-material";
 import routes from "./routes";
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    const handleNavbarClick = (e: React.MouseEvent, route: string) => {
+        navigate(route);
+    }
 
     return (
         <nav className="nav">
@@ -17,8 +23,9 @@ const Navbar = () => {
                             {routes.map((route) => (
                                 <Button
                                     sx={ {my: 2, color: 'white', display: 'block'} }
+                                    onClick={(e) => handleNavbarClick(e, route.url)}
                                 >
-                                    <Link to={route.url}>{route.name}</Link>
+                                    {route.name}
                                 </Button>
                             ))}
 
