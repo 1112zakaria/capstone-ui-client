@@ -1,6 +1,6 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {AppBar, Box, Button, IconButton, Toolbar} from "@mui/material";
-import {CatchingPokemon} from "@mui/icons-material";
+import {CatchingPokemon, SatelliteAlt} from "@mui/icons-material";
 import routes from "./routes";
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton size="large">
-                        <CatchingPokemon />
+                        <SatelliteAlt />
                     </IconButton>
                     <Box sx={ {flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
 
