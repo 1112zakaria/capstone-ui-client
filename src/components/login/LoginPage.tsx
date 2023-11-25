@@ -1,6 +1,12 @@
+import LoginForm from "./LoginForm";
+import LoginPaper from "./LoginPaper";
 
 function LoginPage() {
-    return <h1>Hello this is the login page</h1>
+  return (
+    <div>
+      <LoginPaper />
+    </div>
+  );
 }
 
 export default LoginPage;
