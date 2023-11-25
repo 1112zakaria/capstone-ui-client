@@ -4,13 +4,7 @@ import LoginPage from "./login/LoginPage";
 import ConfigurePage from "./configure/ConfigurePage";
 import MonitorPage from "./monitor/MonitorPage";
 import StatisticsPage from "./statistics/StatisticsPage";
-
-
-type RouteDefinition = {
-    name: string;
-    url: string;
-    Element: any;   // FIXME: what is this type?
-};
+import RouteDefinition from "./RouteDefinition";
 
 const routes: RouteDefinition[] = [
     {
