@@ -11,7 +11,7 @@ function LoginPaper() {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{minHeight: '100vh'}}
+      sx={{minHeight: '50vh'}}
     >
       <Grid item xs={3}>
         <Paper elevation={10} style={paperStyle}>
