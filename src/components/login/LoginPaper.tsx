@@ -1,4 +1,4 @@
-import {Grid, Paper} from "@mui/material";
+import {FormLabel, Grid, Paper} from "@mui/material";
 import LoginForm from "./LoginForm";
 
 function LoginPaper() {
@@ -15,7 +15,7 @@ function LoginPaper() {
     >
       <Grid item xs={3}>
         <Paper elevation={10} style={paperStyle}>
-          Sign in
+          <FormLabel>Sign in</FormLabel>
           <LoginForm/>
         </Paper>
       </Grid>
