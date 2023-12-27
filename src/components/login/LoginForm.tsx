@@ -26,6 +26,8 @@ function LoginForm() {
       {username: username, password: password}
     ).then((response: any) => {
       console.log(response.data);
+    }).catch((error: any) => {
+      console.log(error);
     });
   }
 
