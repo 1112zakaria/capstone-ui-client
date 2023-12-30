@@ -1,8 +1,9 @@
 import {Button, FormControl, FormHelperText, TextField} from "@mui/material";
 import React, {useState, useEffect} from "react";
-import { request } from "../../axiosHelper";
+import { request, setAuthToken } from "../../axiosHelper";
 
 function LoginForm() {
+  // FIXME: use Redux/props to bring-up the state up to the LoginPage
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,10 +23,11 @@ function LoginForm() {
     console.log('submitting form');
     request(
       'POST',
-      '/login',
-      {username: username, password: password}
+      'http://localhost:5000/register',
+      {login: username, password: password, firstName: "Zakaria", lastName: "Ismail"}
     ).then((response: any) => {
       console.log(response.data);
+      setAuthToken(response.data.token);
     }).catch((error: any) => {
       console.log(error);
     });
