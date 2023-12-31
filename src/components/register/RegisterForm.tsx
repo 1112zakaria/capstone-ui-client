@@ -12,6 +12,7 @@ function RegisterForm() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    
   };
 
   const defaultTheme = createTheme();
@@ -60,10 +61,10 @@ function RegisterForm() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="login"
+                  label="Username"
+                  name="login"
+                  autoComplete="username"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -77,12 +78,6 @@ function RegisterForm() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -94,7 +89,7 @@ function RegisterForm() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

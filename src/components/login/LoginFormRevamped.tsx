@@ -37,10 +37,10 @@ function LoginFormRevamped() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="login"
+              label="Username"
+              name="login"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -72,7 +72,7 @@ function LoginFormRevamped() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
