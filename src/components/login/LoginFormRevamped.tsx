@@ -1,15 +1,23 @@
 import { Copyright, LockOutlined } from "@mui/icons-material";
 import {Avatar, Box, Button,
   Checkbox, Container, createTheme, CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
+import { loginService } from "../../services/authService";
 
 function LoginFormRevamped() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    let login: string = "", password: string = "";
+    const data: FormData = new FormData(event.currentTarget);
+
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    login = data.get('login')!.toString();
+    password = data.get('password')!.toString();
+
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
+
+    //loginService(login, password);
   };
 
   const defaultTheme = createTheme();
