@@ -3,16 +3,27 @@ import {Copyright, LockOutlined } from "@mui/icons-material";
 import {Avatar, Box, Button, Checkbox, Container,
   createTheme,
   CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
+import { registerService } from "../../services/authService";
 
 function RegisterForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    let firstName: string, lastName: string, password: string, login: string;
     
+    event.preventDefault();
+    firstName = data.get('firstName')!.toString();
+    lastName = data.get('lastName')!.toString();
+    login = data.get('login')!.toString();
+    password = data.get('password')!.toString();
+
+    console.log({
+      firstName,
+      lastName,
+      login,
+      password
+    });
+
+    registerService(firstName, lastName, login, password);
   };
 
   const defaultTheme = createTheme();

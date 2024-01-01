@@ -13,11 +13,11 @@ function LoginFormRevamped() {
     password = data.get('password')!.toString();
 
     console.log({
-      email: data.get('email'),
-      password: data.get('password')
+      login,
+      password
     });
 
-    //loginService(login, password);
+    loginService(login, password);
   };
 
   const defaultTheme = createTheme();
