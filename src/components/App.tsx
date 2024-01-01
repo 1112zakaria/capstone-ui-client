@@ -17,7 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({login, route, redirectPa
     // redirect to login page
     return <Navigate to={redirectPath} replace />
   }
-  return <Route path={route.url} element={route.Element} />
+  return <route.Element />
 }
 
 function App() {
@@ -29,7 +29,8 @@ function App() {
       <Navbar/>
       <Routes>
         {routes.map((route) => (
-          <ProtectedRoute route={route} login={login} />
+          <Route path={route.url} element={
+            <ProtectedRoute login={login} route={route}/>}/>
         ))}
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
