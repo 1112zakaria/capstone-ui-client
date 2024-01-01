@@ -15,7 +15,8 @@ export const clearAuthToken = () => {
     window.localStorage.removeItem("auth_token");
 }
 
-export const request = (method: string, url: string, data: string) => {
+// FIXME: define interfaces for all the various request types
+export const request = (method: string, url: string, data: any) => {
     let headers = {};
     let authToken = getAuthToken();
     console.log(headers);

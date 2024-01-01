@@ -3,7 +3,7 @@ import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
 import Navbar from "./Navbar";
 import routes, { RouteDefinition } from "./routes";
-import {Provider} from "react-redux";
+//import {Provider} from "react-redux";
 import { getLogin } from '../services/authService';
 
 interface ProtectedRouteProps {
