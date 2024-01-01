@@ -4,38 +4,50 @@ import LoginPage from "./login/LoginPage";
 import ConfigurePage from "./configure/ConfigurePage";
 import MonitorPage from "./monitor/MonitorPage";
 import StatisticsPage from "./statistics/StatisticsPage";
-import RouteDefinition from "./RouteDefinition";
+
+export type RouteDefinition = {
+    name: string;
+    url: string;
+    Element: any;   // FIXME: what is this type?
+    requireAuth: boolean
+};
 
 const routes: RouteDefinition[] = [
     {
         name: "home",
         url: "/",
-        Element: HomePage
+        Element: HomePage,
+        requireAuth: false
     },
     {
         name: "Configure",
         url: "/configure",
-        Element: ConfigurePage
+        Element: ConfigurePage,
+        requireAuth: true
     },
     {
         name: "Monitor",
         url: "/monitor",
-        Element: MonitorPage
+        Element: MonitorPage,
+        requireAuth: true
     },
     {
         name: "Statistics",
         url:"/statistics",
-        Element: StatisticsPage
+        Element: StatisticsPage,
+        requireAuth: true
     },
     {
         name: "login",
         url: "/login",
-        Element: LoginPage
+        Element: LoginPage,
+        requireAuth: false
     },
     {
         name: "register",
         url: "/register",
-        Element: RegisterPage
+        Element: RegisterPage,
+        requireAuth: false
     }
 ];
 
