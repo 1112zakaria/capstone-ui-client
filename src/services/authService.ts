@@ -22,7 +22,7 @@ export const loginService = (login: string, password: string) => {
   ).then((response: any) => {
     console.log(response.data);
     setAuthToken(response.data.token);
-    setLogin(response.login);
+    setLogin(response.data.login);
   }).catch((error: any) => {
     // FIXME: expired token sent perhaps? is this even needed???
     console.log(error);
