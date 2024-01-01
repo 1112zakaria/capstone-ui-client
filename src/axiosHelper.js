@@ -11,6 +11,10 @@ export const setAuthToken = (token: string) => {
     window.localStorage.setItem("auth_token", token);
 }
 
+export const clearAuthToken = () => {
+    window.localStorage.removeItem("auth_token");
+}
+
 export const request = (method, url, data) => {
     let headers = {};
     let authToken = getAuthToken();
