@@ -15,7 +15,7 @@ export const clearAuthToken = () => {
     window.localStorage.removeItem("auth_token");
 }
 
-export const request = (method, url, data) => {
+export const request = (method: string, url: string, data: string) => {
     let headers = {};
     let authToken = getAuthToken();
     console.log(headers);

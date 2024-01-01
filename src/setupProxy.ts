@@ -1,6 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-function(app) {
+// FIXME: what type is this???
+function(app: any) {
     app.use(
         '/api',
         createProxyMiddleware({
