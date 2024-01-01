@@ -6,7 +6,13 @@ import routes, { RouteDefinition } from "./routes";
 import {Provider} from "react-redux";
 import { getLogin } from '../services/authService';
 
-const ProtectedRoute = (login: string | null, route: RouteDefinition, redirectPath: string = '/login') => {
+interface ProtectedRouteProps {
+  login: string | null;
+  route: RouteDefinition;
+  redirectPath?: string;
+};
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({login, route, redirectPath = '/'}) => {
   if (!login && route.requireAuth) {
     // redirect to login page
     return <Navigate to={redirectPath} replace />
@@ -17,13 +23,13 @@ const ProtectedRoute = (login: string | null, route: RouteDefinition, redirectPa
 function App() {
   let login: string | null;
   login = getLogin();
-  
+
   return (
     <div>
       <Navbar/>
       <Routes>
         {routes.map((route) => (
-          <Route path={route.url} element={<route.Element/>}/>
+          <ProtectedRoute route={route} login={login} />
         ))}
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
