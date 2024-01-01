@@ -1,5 +1,17 @@
 import {clearAuthToken, request, setAuthToken } from "../axiosHelper";
 
+export const getLogin = () => {
+  return window.localStorage.getItem('login');
+}
+
+const setLogin = (login: string) => {
+  window.localStorage.setItem('login', login);
+}
+
+const clearLogin = () => {
+  window.localStorage.removeItem('login');
+}
+
 export const loginService = (login: string, password: string) => {
   console.log('calling login service');
   clearAuthToken();
@@ -10,10 +22,12 @@ export const loginService = (login: string, password: string) => {
   ).then((response: any) => {
     console.log(response.data);
     setAuthToken(response.data.token);
+    setLogin(response.login);
   }).catch((error: any) => {
     // FIXME: expired token sent perhaps? is this even needed???
     console.log(error);
     clearAuthToken();
+    clearLogin();
   });
 };
 
@@ -27,9 +41,11 @@ export const registerService = (firstName: string, lastName: string, login: stri
   ).then((response: any) => {
     console.log(response.data);
     setAuthToken(response.data.token);
+    setLogin(response.data.login);
   }).catch((error: any) => {
     // FIXME: expired token sent perhaps? is this even needed??
     console.log(error);
     clearAuthToken();
+    clearLogin();
   });
 };
