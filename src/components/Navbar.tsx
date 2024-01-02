@@ -13,7 +13,7 @@ const Navbar = () => {
   }
 
   const handleLogoutClick = (e: React.MouseEvent) => {
-
+    
   }
 
   return (

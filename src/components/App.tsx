@@ -5,20 +5,7 @@ import Navbar from "./Navbar";
 import routes, { RouteDefinition } from "./routes";
 //import {Provider} from "react-redux";
 import { getLogin } from '../services/authService';
-
-interface ProtectedRouteProps {
-  login: string | null;
-  route: RouteDefinition;
-  redirectPath?: string;
-};
-
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({login, route, redirectPath = '/'}) => {
-  if (!login && route.requireAuth) {
-    // redirect to login page
-    return <Navigate to={redirectPath} replace />
-  }
-  return <route.Element />
-}
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   let login: string | null;
