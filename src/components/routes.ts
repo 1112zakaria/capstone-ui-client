@@ -9,7 +9,8 @@ export type RouteDefinition = {
     name: string;
     url: string;
     Element: any;   // FIXME: what is this type?
-    requireAuth: boolean
+    requireAuth: boolean;
+    requireLoggedOut: boolean;
 };
 
 const routes: RouteDefinition[] = [
@@ -17,37 +18,43 @@ const routes: RouteDefinition[] = [
         name: "home",
         url: "/",
         Element: HomePage,
-        requireAuth: false
+        requireAuth: false,
+        requireLoggedOut: false,
     },
     {
         name: "Configure",
         url: "/configure",
         Element: ConfigurePage,
-        requireAuth: true
+        requireAuth: true,
+        requireLoggedOut: false,
     },
     {
         name: "Monitor",
         url: "/monitor",
         Element: MonitorPage,
-        requireAuth: true
+        requireAuth: true,
+        requireLoggedOut: false,
     },
     {
         name: "Statistics",
         url:"/statistics",
         Element: StatisticsPage,
-        requireAuth: true
+        requireAuth: true,
+        requireLoggedOut: false,
     },
     {
         name: "login",
         url: "/login",
         Element: LoginPage,
-        requireAuth: false
+        requireAuth: false,
+        requireLoggedOut: true,
     },
     {
         name: "register",
         url: "/register",
         Element: RegisterPage,
-        requireAuth: false
+        requireAuth: false,
+        requireLoggedOut: true,
     }
 ];
 
