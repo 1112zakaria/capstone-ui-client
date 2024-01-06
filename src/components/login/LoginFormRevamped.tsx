@@ -1,9 +1,14 @@
 import { Copyright, LockOutlined } from "@mui/icons-material";
 import {Avatar, Box, Button,
   Checkbox, Container, createTheme, CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
-import { loginService } from "../../services/authService";
+import {
+  useContext
+} from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 function LoginFormRevamped() {
+  const { loginUser } = useContext(AuthContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     let login: string = "", password: string = "";
     const data: FormData = new FormData(event.currentTarget);
@@ -17,7 +22,7 @@ function LoginFormRevamped() {
       password
     });
 
-    loginService(login, password);
+    loginUser(login, password);
   };
 
   const defaultTheme = createTheme();
