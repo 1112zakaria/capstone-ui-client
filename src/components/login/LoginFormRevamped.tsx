@@ -1,13 +1,19 @@
 import { Copyright, LockOutlined } from "@mui/icons-material";
-import {Avatar, Box, Button,
+import {Alert, Avatar, Box, Button,
   Checkbox, Container, createTheme, CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
 import {
   useContext
 } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import {
+  useState
+} from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginFormRevamped() {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, setAuthToken } = useContext(AuthContext);
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     let login: string = "", password: string = "";
@@ -22,8 +28,21 @@ function LoginFormRevamped() {
       password
     });
 
-    loginUser(login, password);
+    loginUser(login, password, formSubmitCallback);
   };
+
+  const formSubmitCallback = (authToken: string | null) => {
+    // if login was successful, navigate to home
+    // if login was not successful, display error message
+    console.log(authToken);
+    setAuthToken(authToken);
+    if (authToken != null) {
+      setError(false);
+      navigate('/');
+      return;
+    }
+    setError(true);
+  }
 
   const defaultTheme = createTheme();
 
@@ -46,6 +65,7 @@ function LoginFormRevamped() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {error && <Alert severity="error">Invalid credentials</Alert>}
             <TextField
               margin="normal"
               required
