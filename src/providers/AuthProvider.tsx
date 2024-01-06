@@ -3,15 +3,17 @@ import { loginService, registerService } from "../services/authService";
 
 interface IAuth {
   authToken: string | null;
-  loginUser: (login: string, password: string) => void;
-  registerUser: (firstName: string, lastName: string, login: string, password: string) => void;
+  setAuthToken: (authToken: string | null) => void;
+  loginUser: (login: string, password: string, callback?: (arg: string | null) => void) => void;
+  registerUser: (firstName: string, lastName: string, login: string, password: string, callback?: (arg: string | null) => void) => void;
   logoutUser: () => void;
 };
 
 export const AuthContext = createContext<IAuth>({
   authToken: null,
-  loginUser: (login, password) => {},
-  registerUser: (firstName, lastName, login, password) => {},
+  setAuthToken: (authToken) => {},
+  loginUser: (login, password, callback?) => {},
+  registerUser: (firstName, lastName, login, password, callback?) => {},
   logoutUser: () => {}
 });
 
@@ -24,17 +26,17 @@ const AUTH_TOKEN_KEY = 'auth_token';
 const AuthProvider: FC<Props> = ({ children }) => {
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem(AUTH_TOKEN_KEY));
 
-  const loginUser = (login: string, password: string) => {
-    loginService(login, password, writeAuthToken);
+  const loginUser = (login: string, password: string, callback: (arg: string | null) => void = writeAuthToken) => {
+    loginService(login, password, callback);
   }
 
   const logoutUser = () => {
     writeAuthToken(null);
   }
 
-  const registerUser = (firstName: string, lastName: string, login: string, password: string) => {
+  const registerUser = (firstName: string, lastName: string, login: string, password: string, callback: (arg: string | null) => void = writeAuthToken) => {
     // call register service
-    registerService(firstName, lastName, login, password, writeAuthToken);
+    registerService(firstName, lastName, login, password, callback);
   }
 
   const writeAuthToken = (authToken: string | null) => {
@@ -51,6 +53,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
     <AuthContext.Provider
       value={{
         authToken,
+        setAuthToken: writeAuthToken,
         loginUser,
         registerUser,
         logoutUser
