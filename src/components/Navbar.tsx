@@ -54,8 +54,8 @@ const Navbar = () => {
                   and if the user is not signed in, don't render the other options? */}
         </Box>
         <Box>
-          <Button variant="contained" color="success"
-                  onClick={handleLogoutClick}>Logout</Button>
+          {isLoggedIn && <Button variant="contained" color="success"
+                  onClick={handleLogoutClick}>Logout</Button>}
         </Box>
       </Toolbar>
     </AppBar>
