@@ -21,7 +21,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const AUTH_TOKEN_KEY = 'auth_token';
+export const AUTH_TOKEN_KEY = 'auth_token';
 
 const AuthProvider: FC<Props> = ({ children }) => {
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem(AUTH_TOKEN_KEY));
