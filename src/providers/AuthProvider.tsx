@@ -1,4 +1,5 @@
 import {createContext, FC, useState } from "react";
+import { loginService, registerService } from "../services/authService";
 
 interface IAuth {
   authToken: string | null;
@@ -24,7 +25,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem(AUTH_TOKEN_KEY));
 
   const loginUser = (login: string, password: string) => {
-    writeAuthToken("LOGIN BUTTON!");
+    loginService(login, password, writeAuthToken);
   }
 
   const logoutUser = () => {
@@ -33,9 +34,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   const registerUser = (firstName: string, lastName: string, login: string, password: string) => {
     // call register service
-
-    // set auth token based on result
-    writeAuthToken("REGISTER!!!");
+    registerService(firstName, lastName, login, password, writeAuthToken);
   }
 
   const writeAuthToken = (authToken: string | null) => {
