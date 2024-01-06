@@ -35,10 +35,10 @@ function LoginFormRevamped() {
     // if login was successful, navigate to home
     // if login was not successful, display error message
     console.log(authToken);
+    setAuthToken(authToken);
     if (authToken != null) {
-      navigate('/');
       setError(false);
-      setAuthToken(authToken);
+      navigate('/');
       return;
     }
     setError(true);

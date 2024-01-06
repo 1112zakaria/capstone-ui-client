@@ -1,15 +1,18 @@
 //import { SatelliteAlt } from "@mui/icons-material";
 import {Copyright, LockOutlined } from "@mui/icons-material";
-import {Avatar, Box, Button, Checkbox, Container,
+import {Alert, Avatar, Box, Button, Checkbox, Container,
   createTheme,
   CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
 import {
-  useContext
+  useContext, useState
 } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 function RegisterForm() {
-  const {registerUser} = useContext(AuthContext);
+  const {registerUser, setAuthToken} = useContext(AuthContext);
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const data = new FormData(event.currentTarget);
@@ -28,9 +31,18 @@ function RegisterForm() {
       password
     });
     
-    registerUser(firstName, lastName, login, password);
+    registerUser(firstName, lastName, login, password, formSubmitCallback);
 
   };
+
+  const formSubmitCallback = (authToken: string | null) => {
+    setAuthToken(authToken);
+    if (authToken != null) {
+      setError(false);
+      navigate('/');
+    }
+    setError(true);
+  }
 
   const defaultTheme = createTheme();
   return (
@@ -52,6 +64,7 @@ function RegisterForm() {
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            {error && <Alert severity="error">Username exists</Alert>}
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
