@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
 };
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({login, route, redirectPath = '/'}) => {
-  if (!login && route.requireAuth) {
+  if (!login && route.requireAuth || login && route.requireLoggedOut) {
     // redirect to login page
     return <Navigate to={redirectPath} replace />
   }

@@ -5,16 +5,16 @@ import Navbar from "./Navbar";
 import routes, { RouteDefinition } from "./routes";
 import ProtectedRoute from './ProtectedRoute';
 import { FC } from 'react';
-import AuthProvider, { AuthContext } from '../providers/AuthProvider';
+import { AuthContext } from '../providers/AuthProvider';
 import {
   useContext
 } from "react";
 
 function App() {
   const { authToken } = useContext(AuthContext);
-
+  
   return (
-    <AuthProvider>
+    <>
       <Navbar/>
       <Routes>
         {routes.map((route) => (
@@ -23,7 +23,7 @@ function App() {
         ))}
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
-    </AuthProvider>
+    </>
   );
 }
 
