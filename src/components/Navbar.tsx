@@ -7,6 +7,7 @@ import {
   useContext
 } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { allowRoute } from "./ProtectedRoute";
 
 const Navbar = () => {
 
@@ -20,13 +21,6 @@ const Navbar = () => {
 
   const handleLogoutClick = (e: React.MouseEvent) => {
     logoutUser();
-  }
-
-  const allowRoute = (isLoggedIn: boolean, route: RouteDefinition) => {
-    // do not allow route render if:
-    // - !isLoggedIn and requiresAuth
-    // - isLoggedIn and requiredLoggedOut
-    return !(!isLoggedIn && route.requireAuth || isLoggedIn && route.requireLoggedOut);
   }
 
   return (
