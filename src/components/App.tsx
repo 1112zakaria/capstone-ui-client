@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
 import Navbar from "./Navbar";
 import routes, { RouteDefinition } from "./routes";
-//import {Provider} from "react-redux";
-import { getLogin } from '../services/authService';
 import ProtectedRoute from './ProtectedRoute';
+import { FC } from 'react';
+import AuthProvider, { AuthContext } from '../providers/AuthProvider';
+import {
+  useContext
+} from "react";
 
 function App() {
-  let login: string | null;
-  login = getLogin();
+  const { authToken } = useContext(AuthContext);
 
   return (
-    <div>
+    <AuthProvider>
       <Navbar/>
       <Routes>
         {routes.map((route) => (
           <Route path={route.url} element={
-            <ProtectedRoute login={login} route={route}/>}/>
+            <ProtectedRoute login={authToken} route={route}/>}/>
         ))}
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
-    </div>
+    </AuthProvider>
   );
 }
 

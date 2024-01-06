@@ -3,13 +3,18 @@ import {Copyright, LockOutlined } from "@mui/icons-material";
 import {Avatar, Box, Button, Checkbox, Container,
   createTheme,
   CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider, Typography } from "@mui/material";
-import { registerService } from "../../services/authService";
+import {
+  useContext
+} from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 function RegisterForm() {
+  const {registerUser} = useContext(AuthContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const data = new FormData(event.currentTarget);
     let firstName: string, lastName: string, password: string, login: string;
-    
+
     event.preventDefault();
     firstName = data.get('firstName')!.toString();
     lastName = data.get('lastName')!.toString();
@@ -22,8 +27,9 @@ function RegisterForm() {
       login,
       password
     });
+    
+    registerUser(firstName, lastName, login, password);
 
-    registerService(firstName, lastName, login, password);
   };
 
   const defaultTheme = createTheme();

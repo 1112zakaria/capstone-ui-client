@@ -1,24 +1,16 @@
 import axios from 'axios';
+import {
+    useContext
+} from "react";
+import { AuthContext } from './providers/AuthProvider';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-export const getAuthToken = () => {
-    return window.localStorage.getItem("auth_token");
-}
-
-export const setAuthToken = (token: string) => {
-    window.localStorage.setItem("auth_token", token);
-}
-
-export const clearAuthToken = () => {
-    window.localStorage.removeItem("auth_token");
-}
-
 // FIXME: define interfaces for all the various request types
 export const request = (method: string, url: string, data: any) => {
+    const { authToken } = useContext(AuthContext);
     let headers = {};
-    let authToken = getAuthToken();
     console.log(headers);
     console.log(authToken);
     console.log(authToken !== 'undefined');

@@ -3,17 +3,22 @@ import {AppBar, Box, Button, IconButton, Toolbar} from "@mui/material";
 import {SatelliteAlt} from "@mui/icons-material";
 import routes from "./routes";
 import {MouseEvent} from "react";
+import {
+  useContext
+} from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const {logoutUser} = useContext(AuthContext);
 
   const handleNavbarClick = (e: React.MouseEvent, route: string) => {
     navigate(route);
   }
 
   const handleLogoutClick = (e: React.MouseEvent) => {
-    
+    logoutUser();
   }
 
   return (
